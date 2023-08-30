@@ -1,0 +1,3 @@
+#!/bin/bash
+#Get the path of the cwd
+pwd
