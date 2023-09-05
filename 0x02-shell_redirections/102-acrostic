@@ -1,0 +1,2 @@
+#!/bin/bash
+while IFS= read -r line; do decoded+=${line:0:1}; done < "An Acrostic"; echo $decoded
