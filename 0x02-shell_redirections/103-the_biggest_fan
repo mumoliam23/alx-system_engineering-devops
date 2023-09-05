@@ -1,0 +1,2 @@
+#!/bin/bash
+sort -u -k1,1 -k2,2nr | head -n 11
