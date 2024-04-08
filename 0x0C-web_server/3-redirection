@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #redirecting to a different location
-apt-get update
-sudo apt-get install -y nginx
+apt update
+sudo apt install nginx
 printf %s "server {
     listen 80;
     listen [::]:80 default_server;
