@@ -2,13 +2,15 @@
 #redirecting to a different location
 apt-get update
 sudo apt-get install -y nginx
-printf %s "server {
+cat << EOF | sudo tee /etc/nginx/sites-available/redirect_me
+
+server {
     listen 80;
     listen [::]:80 default_server;
     root   /var/www/html;
     index  index.html index.htm index.nginx-debian.html;
     location /redirect_me {
-        rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
     }
-}" | sudo tee /etc/nginx/sites-available/default
+} | sudo tee /etc/nginx/sites-available/default
 sudo service nginx restart
