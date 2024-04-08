@@ -12,5 +12,8 @@ server {
     location /redirect_me {
         return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
     }
-} | sudo tee /etc/nginx/sites-available/default
+}
+EOF
+sudo ls -s /etc/nginx/sites-available/redirect_me /etc/nginx/sites-enabled/
+sudo rm /etc/nginx/sites-available/default
 sudo service nginx restart
