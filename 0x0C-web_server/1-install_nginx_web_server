@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 # a Bash script that configures a new Ubuntu machine that installs nginx on web-01 server, nginx listens to port 80, return a page that contains the string Holberton School when querying Nginx at its root / with a GET request (requesting a page) using curl
-apt update
-apt upgrade
-apt install nginx
-systemctl enable nginx
-systemctl start nginx
+apt-get -y install nginx
+echo "Holberton School for the win!" | tee /usr/share/nginx/html/index.html > /dev/null
+service nginx restart
+
+sed -i "s|location / {|location /redirect_me {|g"  /etc/nginx/sites-available/default
+sed -i "s|try_files \$uri \$uri/ =404;|return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;|g" /etc/nginx/sites-available/default
+service nginx restart
