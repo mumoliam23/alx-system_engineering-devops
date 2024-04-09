@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # apache 2
 
-echo "SeverName localhost" >> /etc/apache2.conf
+echo "Hello HOlberton" >> /etc/apache2.conf
 sudo service apache2 start
