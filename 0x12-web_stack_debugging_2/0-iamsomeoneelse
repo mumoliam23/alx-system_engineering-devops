@@ -2,6 +2,6 @@
 
 # A script running the whoami command
 
-whoami
+sudo -u "$1" whoami
 
 
