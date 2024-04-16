@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# A script running the whoami command
+
+whoami
+
+
