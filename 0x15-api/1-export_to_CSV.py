@@ -1,35 +1,29 @@
 #!/usr/bin/python3
-
 """
-Python script that exports data in the CSV format
+returns information about his/her TODO list progress for a
+given employee ID using a REST API
 """
-
-from requests import get
-from sys import argv
 import csv
+import requests
+from sys import argv
 
+
+def get_todo_csv():
+    """returns employee's TODO list progress"""
+    r_user = requests.get('https://jsonplaceholder.typicode.com/users/{}'
+                          .format(argv[1]))
+
+    r_todo = requests.get('https://jsonplaceholder.typicode.com/todos?'
+                          'userId={}'.format(argv[1]))
+    try:
+        user_dict = r_user.json()
+        task_dict = r_todo.json()
+        with open("{}.csv".format(argv[1]), "w") as csvfile:
+            f = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_ALL)
+            for task in task_dict:
+                f.writerow([user_dict["id"], user_dict["username"],
+                            task["completed"], task["title"]])
+    except:
+        pass
 if __name__ == "__main__":
-    response = get('https://jsonplaceholder.typicode.com/todos/')
-    data = response.json()
-
-    row = []
-    response2 = get('https://jsonplaceholder.typicode.com/users')
-    data2 = response2.json()
-
-    for i in data2:
-        if i['id'] == int(argv[1]):
-            employee = i['username']
-
-    with open(argv[1] + '.csv', 'w', newline='') as file:
-        writ = csv.writer(file, quoting=csv.QUOTE_ALL)
-
-        for i in data:
-
-            row = []
-            if i['userId'] == int(argv[1]):
-                row.append(i['userId'])
-                row.append(employee)
-                row.append(i['completed'])
-                row.append(i['title'])
-
-                writ.writerow(row)
+    get_todo_csv()
