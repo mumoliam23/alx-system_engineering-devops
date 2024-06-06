@@ -1,6 +1,6 @@
-# Create a manifest that fixs termination of phpp.
+# Fixes bad `phpp` extensions to `php` in the WordPress file `wp-settings.php`.
 
-exec { 'fix_phpp':
+exec { 'fix-wordpress':
   command => 'sed -i s/phpp/php/g /var/www/html/wp-settings.php',
-  path    => ['/bin', '/usr/bin/', '/usr/loca/bin/'],
+  path    => '/usr/local/bin/:/bin/'
 }
