@@ -22,4 +22,5 @@ server {
     }
 }
 EOL
+sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
 service nginx start
