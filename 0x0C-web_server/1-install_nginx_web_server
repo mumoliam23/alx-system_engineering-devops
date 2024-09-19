@@ -1,24 +1,9 @@
 #!/usr/bin/env bash
 # This script installs and configures Nginx on an Ubuntu server, ensuring it is listening on port 80 and serves a page with "Hello World!" at the root.
-
-# Update the package index
-sudo apt update
-
-# Install Nginx
+sudo apt-get update
 sudo apt-get -y install nginx
-
-# Allow 'Nginx HTTP' traffic through the firewall
 sudo ufw allow 'Nginx HTTP'
-
-# Enable the firewall (if not already enabled)
-sudo ufw --force enable
-
-# Changing ownership of the root directory (optional step, if required)
-sudo chown -R $USER:$USER /var/www/html
-
-# Creating a "Hello World!" page at the root
-echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
-
-# Restarting the Nginx service to apply changes
-sudo systemctl restart nginx
-
+sudo ufw enable
+sudo chown -R ubuntu /var/www/html
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
+sudo service nginx start
