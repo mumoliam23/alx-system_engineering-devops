@@ -8,22 +8,5 @@ echo '<!DOCTYPE html>
 <html>
 <head><title>Hello World!</title></head>
 <body><h1>Hello World!</h1></body>
-</html>' > /var/www/html/index.html
-#Change the default configuration to serve the custom index.html
-cat > /etc/nginx/sites-available/default  << EOL
-server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-
-    root /var/www/html;
-    index index.html;
-
-    server_name _;
-
-    location / {
-        try_files \$uri \$uri/ =404;
-    }
-}
-EOL
-sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+</html>' > /var/www/html/index.nginx-debian.html
 sudo service nginx start
