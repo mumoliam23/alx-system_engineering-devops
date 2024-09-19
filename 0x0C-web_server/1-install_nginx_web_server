@@ -2,7 +2,7 @@
 # This script installs and configures Nginx on an Ubuntu server
 sudo apt-get update
 sudo apt-get -y install nginx
-
+sudo chown -R ubuntu /var/www/html
 #Create a custom index.html file
 echo "Hello World!" > /var/www/html/index/html
 
