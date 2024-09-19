@@ -3,5 +3,5 @@
 apt-get update
 apt-get -y install nginx
 # Configure Nginx to server a custom page
-echo "Hello World!" > /var/www/html/index.html
+rm /var/www/html/index.nginx-debian.html | echo "Hello World!" > /var/www/html/index.html
 service nginx restart
