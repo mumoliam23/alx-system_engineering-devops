@@ -4,7 +4,7 @@ sudo apt-get update
 sudo apt-get -y install nginx
 sudo chown -R ubuntu /var/www/html
 #Create a custom index.html file
-echo "Hello World!" > /var/www/html/index/html
+echo "Hello World!" > /var/www/html/index.html
 
 #Change the default configuration to serve the custom index.html
 cat > /etc/nginx/sites-available/default << EOL
