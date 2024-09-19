@@ -1,26 +1,15 @@
 #!/usr/bin/env bash
-# This script installs and configures Nginx on an Ubuntu server,
-# ensuring it is listening on port 80 and serves a page with "Hello World!" at the root.
-
-# Update the package list
+# This script installs and configures Nginx on an Ubuntu server
 sudo apt-get update
-
-# Install Nginx
 sudo apt-get -y install nginx
-
-# Allow Nginx HTTP through the firewall
 sudo ufw allow 'Nginx HTTP'
 sudo ufw enable
-
-# Change ownership of the web root directory to the current user
-sudo chown -R $USER:$USER /var/www/html
-
-# Create or overwrite the index.html file with "Hello World!" content
-echo "Hello World!" | sudo tee /var/www/html/index.html
-
-# Ensure the correct file permissions
-sudo chmod 644 /var/www/html/index.html
-
-# Restart Nginx to apply changes
-sudo systemctl restart nginx
+sudo chown -R ubuntu /var/www/html
+# Replace the content of the HTML file with "Hello World!" page
+echo '<!DOCTYPE html>
+<html>
+<head><title>Hello World!</title></head>
+<body><h1>Hello World!</h1></body>
+</html>' > index.html
+sudo service nginx start
 
