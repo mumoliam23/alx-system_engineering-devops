@@ -2,14 +2,24 @@
 # This script installs and configures Nginx on an Ubuntu server
 sudo apt-get update
 sudo apt-get -y install nginx
-sudo ufw allow 'Nginx HTTP'
-sudo ufw --force enable
-sudo chown -R ubuntu /var/www/html
-# Replace the content of the HTML file with "Hello World!" page
-echo '<!DOCTYPE html>
-<html>
-<head><title>Hello World!</title></head>
-<body><h1>Hello World!</h1></body>
-</html>' > index.nginx-debian.html
-sudo service nginx start
 
+#Create a custom index.html file
+echo "Hello World!" > /var/www/html/index/html
+
+#Change the default configuration to serve the custom index.html
+cat > /etc/nginx/sites-available/default << EOL
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/html;
+    index index.html;
+
+    server_name _;
+
+    location / {
+        try_files \$uri \$uri/ =404;
+    }
+}
+EOL
+service nginx start
