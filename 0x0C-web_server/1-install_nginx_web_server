@@ -8,3 +8,5 @@ sudo apt-get -y install nginx
 # Changing ownership of the root directory
 sudo chown -R $USER:$USER /var/www/html
 echo "Hello World!" > /var/www/html/index.nginx-debian.html
+
+service nginx start
